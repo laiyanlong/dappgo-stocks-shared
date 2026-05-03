@@ -46,4 +46,10 @@ export {
   type RsScores,
 } from './utils/relative-strength';
 export { riskRating, type RiskInputs, type RiskRating } from './utils/risk-rating';
+export {
+  classifySentiment,
+  type SentimentLabel,
+  type SentimentInput,
+  type SentimentDisplay,
+} from './utils/news-sentiment';
 export * from './tokens';
