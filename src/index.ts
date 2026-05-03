@@ -93,3 +93,8 @@ export {
   type TickerSummaryInput,
   type TickerSummary,
 } from './utils/summarize-ticker';
+export {
+  buildDashboardSummary,
+  type TickerLite,
+  type DashboardSummary,
+} from './utils/dashboard-summary';
