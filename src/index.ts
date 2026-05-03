@@ -30,6 +30,17 @@ export {
 } from './ticker-aggregate';
 export { computeDrawdown, type DrawdownResult } from './utils/max-drawdown';
 export {
+  formatPrice,
+  formatPercent,
+  formatVolume,
+  formatMarketCap,
+  formatCompactNumber,
+  formatDate,
+  formatRelativeDate,
+  type FormatPriceOpts,
+  type FormatPercentOpts,
+} from './utils/formatters';
+export {
   relativeStrength,
   type RsInputs,
   type RsScores,
