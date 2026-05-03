@@ -52,4 +52,11 @@ export {
   type SentimentInput,
   type SentimentDisplay,
 } from './utils/news-sentiment';
+export {
+  stripHighlightMarkers,
+  parseHighlightSegments,
+  countHighlights,
+  type HighlightStyle,
+  type Segment,
+} from './utils/highlight-markers';
 export * from './tokens';
