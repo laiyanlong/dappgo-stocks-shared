@@ -59,4 +59,15 @@ export {
   type HighlightStyle,
   type Segment,
 } from './utils/highlight-markers';
+export {
+  contributionBars,
+  type ContributionInput,
+  type ContributionBar,
+  type ContributionDisplay,
+} from './utils/contribution-bars';
+export {
+  percentageBar,
+  type PercentageBarInput,
+  type PercentageBarSegment,
+} from './utils/percentage-bar';
 export * from './tokens';
