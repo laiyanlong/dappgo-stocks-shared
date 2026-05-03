@@ -28,3 +28,10 @@ export {
   summarizeMarket,
   type MarketSentiment,
 } from './ticker-aggregate';
+export { computeDrawdown, type DrawdownResult } from './utils/max-drawdown';
+export {
+  relativeStrength,
+  type RsInputs,
+  type RsScores,
+} from './utils/relative-strength';
+export { riskRating, type RiskInputs, type RiskRating } from './utils/risk-rating';
