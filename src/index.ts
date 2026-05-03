@@ -70,4 +70,10 @@ export {
   type PercentageBarInput,
   type PercentageBarSegment,
 } from './utils/percentage-bar';
+export {
+  explainVerdict as explainVerdictFull,
+  type Verdict,
+  type SignalsLike,
+  type VerdictExplanation,
+} from './utils/verdict-explainer';
 export * from './tokens';
