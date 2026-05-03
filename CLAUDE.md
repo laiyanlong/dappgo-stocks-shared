@@ -37,7 +37,7 @@ This copies the updated files into both apps' `src/utils/` directory.
 ## DappGo Stocks family
 
 This repo is part of the **DappGo Stocks** family. The coordination repo
-[`dappgo-stocks-meta`](https://github.com/laiyanlong/dappgo-stocks-meta)
+[`dappgo-stocks-meta`](https://github.com/YanlongLai/dappgo-stocks-meta)
 holds STACK.md, CLAUDE.md, ARCHITECTURE.md, CONVENTIONS.md,
 UI_DESIGN_SYSTEM.md, LAYOUT_PATTERNS.md, WORKFLOW.md,
 INTEGRATION_STRATEGY.md, RELEASE.md, ONBOARDING.md, DEPENDENCY_FLOW.md

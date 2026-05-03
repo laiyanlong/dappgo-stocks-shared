@@ -2,7 +2,7 @@
 
 > Pure-TypeScript shared utilities for the **DappGo Stocks** product family.
 
-Single source of truth for logic shared between [dappgo-tw-stocks-app](https://github.com/laiyanlong/dappgo-tw-stocks-app) and [dappgo-us-stocks-app](https://github.com/laiyanlong/dappgo-us-stocks-app). No React, no React Native — pure functions + types only.
+Single source of truth for logic shared between [dappgo-tw-stocks-app](https://github.com/YanlongLai/dappgo-tw-stocks-app) and [dappgo-us-stocks-app](https://github.com/YanlongLai/dappgo-us-stocks-app). No React, no React Native — pure functions + types only.
 
 ## Modules
 
