@@ -77,3 +77,10 @@ export {
   type VerdictExplanation,
 } from './utils/verdict-explainer';
 export * from './tokens';
+export {
+  priceAxisTicks,
+  dateAxisLabels,
+  scaleLinear,
+  niceCeiling,
+  niceFloor,
+} from './utils/chart-axis';
