@@ -98,3 +98,16 @@ export {
   type TickerLite,
   type DashboardSummary,
 } from './utils/dashboard-summary';
+export {
+  regimeDisplay,
+  volRegimeLabel,
+  trendArrow,
+  isBenchmarkAbove50,
+  isBenchmarkAbove200,
+  benchmarkTrend,
+  type Regime,
+  type VolRegime,
+  type TrendDir,
+  type RegimeData,
+  type RegimeDisplay,
+} from './utils/regime-display';
