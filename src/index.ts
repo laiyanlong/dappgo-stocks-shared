@@ -84,3 +84,7 @@ export {
   niceCeiling,
   niceFloor,
 } from './utils/chart-axis';
+export {
+  cleanCommentary,
+  type CleanedCommentary,
+} from './utils/commentary-cleanup';
