@@ -137,6 +137,13 @@ export {
   type PortfolioStats,
 } from './utils/portfolio-aggregator';
 export {
+  percentile,
+  multiKeySort,
+  topN,
+  quantileBucket,
+  zScore,
+} from './utils/ranking';
+export {
   regimeDisplay,
   volRegimeLabel,
   trendArrow,
