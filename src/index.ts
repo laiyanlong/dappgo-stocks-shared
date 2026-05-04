@@ -125,6 +125,18 @@ export {
   type SourceInfo,
 } from './utils/news-source-reputation';
 export {
+  relativeTimeShort,
+  relativeTimeLong,
+  humanizeDuration,
+  isSameLocalDay,
+  type Locale as TimeLocale,
+} from './utils/time-formatter';
+export {
+  aggregatePortfolio,
+  type PortfolioInput,
+  type PortfolioStats,
+} from './utils/portfolio-aggregator';
+export {
   regimeDisplay,
   volRegimeLabel,
   trendArrow,
