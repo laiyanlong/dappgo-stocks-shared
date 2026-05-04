@@ -119,6 +119,12 @@ export {
   type ScreenHeaderConfig,
 } from './utils/screen-header';
 export {
+  classifyNewsSource,
+  tierLabel,
+  type SourceTier,
+  type SourceInfo,
+} from './utils/news-source-reputation';
+export {
   regimeDisplay,
   volRegimeLabel,
   trendArrow,
