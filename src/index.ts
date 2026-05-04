@@ -108,6 +108,17 @@ export {
   type GateResult,
 } from './utils/feature-gating';
 export {
+  totalHeaderHeight,
+  shouldShowBack,
+  truncateHeaderTitle,
+  HEADER_HEIGHT,
+  HEADER_BACK_LABEL,
+  HEADER_TITLE_FONT_SIZE,
+  HEADER_SUBTITLE_FONT_SIZE,
+  HEADER_BORDER_OPACITY,
+  type ScreenHeaderConfig,
+} from './utils/screen-header';
+export {
   regimeDisplay,
   volRegimeLabel,
   trendArrow,
