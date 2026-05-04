@@ -99,6 +99,15 @@ export {
   type DashboardSummary,
 } from './utils/dashboard-summary';
 export {
+  gate,
+  truncateForTier,
+  limitForTier,
+  daysUntilExpiry,
+  effectiveTier,
+  type UserTier,
+  type GateResult,
+} from './utils/feature-gating';
+export {
   regimeDisplay,
   volRegimeLabel,
   trendArrow,
