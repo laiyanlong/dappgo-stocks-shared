@@ -156,3 +156,12 @@ export {
   type RegimeData,
   type RegimeDisplay,
 } from './utils/regime-display';
+export {
+  isFieldFilled,
+  computeCompleteness,
+  DEFAULT_FIELDS_TW,
+  DEFAULT_FIELDS_US,
+  DEFAULT_FIELDS_OPTIONS,
+  type TickerDict,
+  type CompletenessResult,
+} from './utils/data-completeness';
