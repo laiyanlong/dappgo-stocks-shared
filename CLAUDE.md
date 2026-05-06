@@ -25,9 +25,13 @@
 ## Local commands
 
 ```bash
-npm test                # jest (ts-jest preset, ~380 tests)
-npx tsc --noEmit        # type gate
+pnpm test               # jest (ts-jest preset, ~380 tests)
+pnpm exec tsc --noEmit  # type gate
 ```
+
+> Family standard is `pnpm` (matches `dappgo-stocks-schema` / `dappgo-stocks-mcp`
+> which already commit `pnpm-lock.yaml`). Run `pnpm install` once to generate
+> `pnpm-lock.yaml` for this repo if it's not yet present.
 
 ---
 
@@ -46,8 +50,8 @@ for the barrel export.
 ## Before you finish
 
 ```bash
-npx tsc --noEmit
-npx jest
+pnpm exec tsc --noEmit
+pnpm exec jest
 ```
 
 ## Sync to consumer apps
