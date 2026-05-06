@@ -113,12 +113,14 @@ function formatPct(pct: number): string {
   return `${sign}${pct.toFixed(1)}%`;
 }
 
-/** Returns number of whole calendar days from today to dateStr (YYYY-MM-DD).
- *  Returns 0 for today, positive for future, negative for past.
- *  Parses date-only strings as local time to avoid UTC-offset shift.
+/** Returns number of whole calendar days from `now` (default: today) to
+ *  dateStr (YYYY-MM-DD). Returns 0 for same day, positive for future,
+ *  negative for past. Parses date-only strings as local time to avoid
+ *  UTC-offset shift. The `now` parameter is injectable to keep tests
+ *  deterministic across timezones / clock-edge moments.
  */
-function daysUntilDate(dateStr: string): number {
-  const nowMidnight = new Date();
+function daysUntilDate(dateStr: string, now: Date = new Date()): number {
+  const nowMidnight = new Date(now.getTime());
   nowMidnight.setHours(0, 0, 0, 0);
 
   // Parse YYYY-MM-DD in local time (avoids UTC midnight → -1 day bug)
@@ -162,11 +164,11 @@ function truncate(s: string, maxLen: number): string {
 // hasFreshSignal
 // ---------------------------------------------------------------------------
 
-function computeHasFreshSignal(input: TickerSummaryInput): boolean {
+function computeHasFreshSignal(input: TickerSummaryInput, now: Date): boolean {
   if (input.verdict != null && FRESH_VERDICTS.has(input.verdict)) return true;
   if (input.sentimentLabel != null && STRONG_SENTIMENTS.has(input.sentimentLabel)) return true;
   if (input.earningsDateNext != null) {
-    const days = daysUntilDate(input.earningsDateNext);
+    const days = daysUntilDate(input.earningsDateNext, now);
     if (days >= 0 && days <= 7) return true;
   }
   return false;
@@ -212,6 +214,7 @@ function buildSignalParts(
 export function summarizeTicker(
   input: TickerSummaryInput,
   locale: 'zh-TW' | 'en-US' = 'zh-TW',
+  now: Date = new Date(),
 ): TickerSummary {
   const { symbol, name } = input;
 
@@ -219,7 +222,7 @@ export function summarizeTicker(
   const verdictStr = input.verdict != null ? localVerdict(input.verdict, locale) : '';
   const pricePiece = buildPricePiece(input, locale);
   const signalParts = buildSignalParts(input, locale);
-  const hasFreshSignal = computeHasFreshSignal(input);
+  const hasFreshSignal = computeHasFreshSignal(input, now);
 
   // ---- oneLine (≤ 80 chars) -----------------------------------------------
   // Pattern: "{name} ({symbol}): {verdict} · {priceChange} · {momentum}"
@@ -269,7 +272,7 @@ export function summarizeTicker(
     tagParts.push(localSentiment(input.sentimentLabel, locale));
   }
   if (input.earningsDateNext != null) {
-    const days = daysUntilDate(input.earningsDateNext);
+    const days = daysUntilDate(input.earningsDateNext, now);
     if (days >= 0 && days <= 7) {
       const earningsTag = locale === 'en-US'
         ? `Earnings in ${days}d`

@@ -9,6 +9,19 @@ function daysFromNow(n: number): string {
   return d.toISOString().slice(0, 10);
 }
 
+/** Build a YYYY-MM-DD string `n` days after `now` using LOCAL time so it
+ *  pairs deterministically with summarizeTicker's local-time daysUntil math.
+ *  Use this in tests that pass an explicit `now` to summarizeTicker.
+ */
+function localDaysFromNow(n: number, now: Date): string {
+  const d = new Date(now.getTime());
+  d.setDate(d.getDate() + n);
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}
+
 // ---------------------------------------------------------------------------
 // 1. Basic zh-TW with all fields
 // ---------------------------------------------------------------------------
@@ -248,12 +261,16 @@ test('null fields are safe — no crash', () => {
 // ---------------------------------------------------------------------------
 
 test('en-US earnings tag within 7 days uses English', () => {
+  // Pin `now` to noon local time so the date arithmetic is stable across
+  // timezones / clock-edge runs (was flaky when the system clock was within
+  // a few hours of UTC midnight — toISOString() shifted the date by 1 day).
+  const now = new Date(2026, 4, 4, 12, 0, 0);
   const input: TickerSummaryInput = {
     symbol: 'AAPL',
     name: 'Apple',
-    earningsDateNext: daysFromNow(5),
+    earningsDateNext: localDaysFromNow(5, now),
   };
-  const result = summarizeTicker(input, 'en-US');
+  const result = summarizeTicker(input, 'en-US', now);
   expect(result.detailed).toContain('Earnings in 5d');
   expect(result.hasFreshSignal).toBe(true);
 });
