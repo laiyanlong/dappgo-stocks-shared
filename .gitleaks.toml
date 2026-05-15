@@ -1,0 +1,24 @@
+# Repo-local gitleaks tuning. Extends the default ruleset shipped with the
+# binary — we don't redefine rules, just add allowlists for known-safe paths.
+#
+# Default ruleset already covers: GitHub PAT, AWS keys, Google/Firebase API
+# keys, Sentry DSN, Supabase JWTs, and generic high-entropy strings.
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Files that legitimately contain placeholder/example secrets."
+paths = [
+    '''(^|/)\.env\.example$''',
+    '''(^|/)\.env\.sample$''',
+    '''(^|/)sentry\.properties\.example$''',
+    # CHANGELOG entries occasionally quote shape-like example strings.
+    '''(^|/)CHANGELOG\.md$''',
+]
+# Allow obvious dummy fixtures referenced in docs/tests.
+regexes = [
+    '''YOUR[_-]?(API[_-]?KEY|TOKEN|SECRET)[_-]?HERE''',
+    '''EXAMPLE[_-]?(KEY|TOKEN|SECRET)''',
+    '''sntryu_(xxx|yyy|zzz|abc|placeholder)''',
+]

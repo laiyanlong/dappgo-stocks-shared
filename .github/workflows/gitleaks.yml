@@ -1,0 +1,44 @@
+name: gitleaks
+
+# CI-side secret scan. Mirrors the local pre-commit hook so PRs/pushes
+# from contributors without pre-commit installed still get gated.
+#
+# Covered by the default gitleaks ruleset (no custom regex needed):
+#   - GitHub PATs (ghp_*, gho_*, ghu_*, ghs_*, ghr_*)
+#   - AWS Access Keys (AKIA*, ASIA*) + secret keys
+#   - Google API keys (AIza*) — used by Firebase / GCP
+#   - Sentry DSNs (https://<hash>@*.ingest.sentry.io/<id>)
+#   - Supabase service-role JWTs (eyJhbGc...role:"service_role")
+#     and anon JWTs (high-entropy 3-part JWT shape)
+#   - Generic high-entropy secrets via "generic-api-key" rule
+# Repo-local `.gitleaks.toml` (if present) extends the ruleset.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # gitleaks needs full history for delta scans
+      - name: Run gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          # GITHUB_TOKEN is provided automatically by Actions; no extra secret needed.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # GITLEAKS_LICENSE is only required for orgs (>1 person on the
+          # billing plan). Personal/solo accounts can run unlicensed.
+          # If set, license unlocks summary reporting in the PR.
+          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
+          GITLEAKS_ENABLE_COMMENTS: true
+          GITLEAKS_ENABLE_UPLOAD_ARTIFACT: true
+          GITLEAKS_ENABLE_SUMMARY: true
